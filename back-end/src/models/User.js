@@ -12,16 +12,7 @@ const User = sequelize.define('User', {
         type: DataTypes.STRING,
         allowNull: false,
     },
-
-    inclusionDate: {
-        type: DataTypes.DATE,
-        allowNull: false,
-    },
-
-    alterationDate: {
-        type: DataTypes.DATE,
-    },
-
+    
     rules: {
         type: DataTypes.SMALLINT,
         allowNull: false,
