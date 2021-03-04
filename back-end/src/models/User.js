@@ -23,7 +23,7 @@ const User = sequelize.define('User', {
     },
 
     rules: {
-        type: DataTypes.NUMBER,
+        type: DataTypes.SMALLINT,
         allowNull: false,
     },
 
