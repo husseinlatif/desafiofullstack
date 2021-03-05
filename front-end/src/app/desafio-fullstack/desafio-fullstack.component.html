@@ -1,0 +1,59 @@
+<div class='header'>
+    <div class='flex-container-left'>
+        <img class="square-img" src='../../assets/symbol.svg'>
+        <mat-divider [vertical]="true" class="vertical"></mat-divider>
+        <button mat-raised-button class='square'><img src='../../assets/security-24px.svg'></button>
+        <button color="warn" mat-raised-button class='square'><img src='../../assets/person-24px.svg'></button>
+        <div class="container"><input class="input-header" matInput placeholder="Pesquisar..."><img src='../../assets/search-24px.svg'></div>
+        
+        <button class='square' mat-raised-button><img src='../../assets/tune-24px.svg'></button>
+        <button mat-raised-button color="warn" class="large-button"><img src='../../assets/person-24px.svg'>INCLUIR USUÁRIO</button>
+        <mat-divider [vertical]="true" class="vertical"></mat-divider>
+        <img class="icon" src='../../assets/home-24px.svg'>
+        <img class="icon" src='../../assets/settings-24px.svg'>
+        <img class="icon" src='../../assets/power_settings_new-24px.svg'>
+    </div>
+
+</div>
+<mat-divider></mat-divider>
+<mat-card>
+    <table mat-table [dataSource]="dataSource">
+
+        <ng-container matColumnDef="user">
+            <th mat-header-cell *matHeaderCellDef> USUÁRIO </th>
+            <td mat-cell *matCellDef="let user"> {{user.name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef> EMAIL </th>
+            <td mat-cell *matCellDef="let emails"> {{emails.email}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="inclusionDate">
+            <th mat-header-cell *matHeaderCellDef> DATA DE INCLUSÃO </th>
+            <td mat-cell *matCellDef="let date"> {{date.inclusionDate}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="alterationDate">
+            <th mat-header-cell *matHeaderCellDef> DATA DE ALTERAÇÃO </th>
+            <td mat-cell *matCellDef="let date"> {{date.alterationDate}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="rules">
+            <th mat-header-cell *matHeaderCellDef> REGRAS </th>
+            <td mat-cell *matCellDef="let rules"> {{rules.rule}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef> STATUS </th>
+            <td mat-cell *matCellDef="let statuses"> {{statuses.status}} </td>
+        </ng-container>
+
+        
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+        <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
+    </table>
+</mat-card>
+<mat-paginator [length]="100"
+[pageSize]="10"
+[pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
