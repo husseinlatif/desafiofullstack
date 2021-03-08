@@ -6,9 +6,9 @@ intArray = [int(x) for x in arrayInput.split(",")[1:-1]]
 intArray.append(int(arrayInput[-2]))
 intArray.insert(0, int(arrayInput[1]))
 
-    ###A resolução assume que o array de números fornecido está ordenado, assim como demonstrado no documento do desafio.
-    ###No caso de ser um array não-ordenado, visando menor complexidade algoritmíca, bastaria realizar um 'merge-sort' para ordenar o array antes da execução da função abaixo.
-    ###
+    ###Visando menor complexidade algorítmica, a função abaixo primeiramente faz uma 'deep-copy' do array fornecido (para preservar os índices), e ordena o array fornecido como argumento.
+    ###Tendo em vista que agora temos um array ordenado, o número de iterações sob tal array é considerávelmente reduzido, já que a idéia da função é
+    ###Obter o retorno esperado por meio da subtração de um elemento do array ordenado pelo valor do objetivo. O resultado é buscado na lista ordenada.
 
 def findObjectiveSumIndex(array, obj):
     arrayCopy = array[0:]
@@ -19,7 +19,7 @@ def findObjectiveSumIndex(array, obj):
             if array[k] > numberToSearch:
                 break
             if array[k] == numberToSearch:
-                return [i,k]
+                return [arrayCopy.index(array[i]),arrayCopy.index(array[k])]
 
 
 print(findObjectiveSumIndex(intArray, objective))
