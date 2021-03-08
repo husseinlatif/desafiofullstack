@@ -21,7 +21,7 @@
 
         <ng-container matColumnDef="user">
             <th mat-header-cell *matHeaderCellDef> USUÁRIO </th>
-            <td mat-cell *matCellDef="let user"> {{user.name}} </td>
+            <td mat-cell *matCellDef="let user"> {{user.username}} </td>
         </ng-container>
 
         <ng-container matColumnDef="email">
@@ -41,19 +41,30 @@
 
         <ng-container matColumnDef="rules">
             <th mat-header-cell *matHeaderCellDef> REGRAS </th>
-            <td mat-cell *matCellDef="let rules"> {{rules.rule}} </td>
+            <td mat-cell *matCellDef="let rules" > {{rules.rule}} </td>
         </ng-container>
 
         <ng-container matColumnDef="status">
             <th mat-header-cell *matHeaderCellDef> STATUS </th>
-            <td mat-cell *matCellDef="let statuses"> {{statuses.status}} </td>
+            <td style="color: #32ba20" mat-cell *matCellDef="let statuses"> {{statuses.status}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef style="text-align: end;"> AÇÕES </th>
+            <td style="font-size: larger; font-weight: 600; text-align: end;" (click)="openOverlay()" mat-cell *matCellDef="let actions"> 
+                <img (click)="a" src="../../assets/mode-24px.svg" *ngIf="displayOverlay">
+                <img (click)="a" src="../../assets/delete-24px.svg"*ngIf="displayOverlay"> 
+                <span *ngIf="!displayOverlay">...</span> 
+            </td>
         </ng-container>
 
         
         <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
         <tr mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></tr>
     </table>
+    <div>
+        <mat-paginator
+        showFirstLastButtons
+        [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    </div>
 </mat-card>
-<mat-paginator [length]="100"
-[pageSize]="10"
-[pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>

@@ -3,7 +3,15 @@ table {
 }
 
 th {
-    color: gray;
+    color: #333333;
+}
+
+td {
+    font-weight: 410;
+}
+
+body {
+    background-color: #f5f5f5;
 }
 
 .vertical {
@@ -23,6 +31,10 @@ th {
     padding-left: 0;
     padding-right: 0;
 
+}
+
+.mat-cell cdk-cell cdk-column-status mat-column-status ng-star-inserted {
+    background-color:green
 }
 
 .square-img {
@@ -74,12 +86,14 @@ mat-card{
     align-items: center;
     justify-content: center;
     background-color: #f5f5f5;
+    flex-direction: column;
 }
 
 mat-paginator{
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: #f5f5f5;
 }
 
 .header {

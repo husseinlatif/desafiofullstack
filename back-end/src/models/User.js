@@ -12,6 +12,15 @@ const User = sequelize.define('User', {
         type: DataTypes.STRING,
         allowNull: false,
     },
+
+    inclusionDate: {
+        type: DataTypes.DATEONLY,
+        allowNull: false
+    },
+
+    alterationDate: {
+        type: DataTypes.DATEONLY
+    },
     
     rules: {
         type: DataTypes.SMALLINT,

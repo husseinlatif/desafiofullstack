@@ -2,11 +2,11 @@ const User = require('../models/User')
 const sequelize = require('../config/sequelize')
 
 
-const index = async(req, res) => {
+const index = async(req,res) => {
     try {
-        const users = User.findAll();
-        return res.status(200).json({users});
-    } catch (err) {
+        const user = await User.findAll();
+        return res.status(200).json({user});
+    }catch(err){
         return res.status(500).json({err});
     }
 };
@@ -23,52 +23,59 @@ const show = async(req, res) => {
 };
 
 
-const create = async(req, res) => {
-    const userData = {
+const create = async(req,res) => {
+    const newUserData = {
         username: req.body.username,
         email: req.body.email,
-    // inclusionDate: Date.now(),
-    // alterationDate: null,
+        inclusionDate: Date.now(),
+        alterationDate: null,
         rules: req.body.rules,
-        status: req.body.status,
-    };
+        status: req.body.status
+    }
 
     try {
-        const newUser = await User.create(userData);
-        return res.status(200).json({newUser});
-    } catch (err) {
+        const user = await User.create(newUserData);
+        return res.status(201).json({user});
+    }catch(err){
         return res.status(500).json({err});
     }
 };
 
 
-const update = async(req, res) => {
-    const userData = {
+const update = async(req,res) => {
+    const newUserData = {
         username: req.body.username,
         email: req.body.email,
-    // alterationDate: Date.now(),
+        alterationDate: Date.now(),
         rules: req.body.rules,
-        status: req.body.status,
-    };
-    
-    try {
-        const {id} = req.params;
-        const user = await User.update(userData, {where: {id: id}} )
-    } catch (err) {
-        return res.status(500).json({err});
+        status: req.body.status
     }
-};
 
+    const {id} = req.params;
 
-const destroy = async(req, res) => {
     try {
-        const {id} = req.params;
-        const deletedUser = await User.destroy(req.body, {where: {id: id}});
-        if (deletedUser) {
-            return res.status(200).json("Usuário deletado com sucesso!");
+        const [updated] = await User.update(newUserData, {where: {id: id}});
+        if(updated) {
+            const user = await User.findByPk(id);
+            return res.status(200).send(user);
         }
-        throw new Error("Usuário não encontrado!");
-    } catch (err) {
+        throw new Error('Usuário não encontrado.');
+    } catch(err){
+        return res.status(500).json({err});
+    }
+};
+
+
+const destroy = async(req,res) => {
+    const {id} = req.params;
+
+    try {
+        const deleted = await User.destroy({where: {id: id}});
+        if(deleted) {
+            return res.status(200).json("Usuario deletado com sucesso.");
+        }
+        throw new Error ("Usuario nao encontrado.");
+    } catch(err){
         return res.status(500).json({err});
     }
 };

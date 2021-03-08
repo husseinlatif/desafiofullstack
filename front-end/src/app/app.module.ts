@@ -9,14 +9,16 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 
+
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DesafioFullstackComponent } from './desafio-fullstack/desafio-fullstack.component';
+import { HttpClientModule,} from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DesafioFullstackComponent
+    DesafioFullstackComponent,
   ],
   imports: [
     BrowserModule,
@@ -26,7 +28,8 @@ import { DesafioFullstackComponent } from './desafio-fullstack/desafio-fullstack
     MatCardModule,
     MatDividerModule,
     MatButtonModule,
-    MatInputModule
+    MatInputModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
